@@ -12,13 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             throw new Exception("Você não preencheu todos os campos.Tente novamente"); 
         }
         else{
+
             $game= new Jogo;
             if($game->receber($v1,$v2,$v3,$v4,$v5)>0){
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
+
                 $_SESSION['numero']=$game->receber($v1,$v2,$v3,$v4,$v5);
-                header("Location:".RAIZ_PROJETO."adivinhei.php");
+                var_dump($_SESSION['numero']);
+                 header("Location:".RAIZ_PROJETO."adivinhei.php");
                 exit();
             }else{
                 throw new Exception("Voce não marcou todos os inputs");
@@ -34,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
    
 }else{
-    echo "form na enviou";
+    echo "form nao enviou";
 }
 
 
